@@ -69,10 +69,16 @@ app.post("/add/teacher", async (req, res) => {
 
 // Create a dynamic delete route to remove a teacher by their ID
 
-
+app.delete("/teachers/:id", async (req,res) =>{
+const resp = await Teacher.findOneAndDelete({_id:req.params.id})
+res.json(resp)
+} )
 
 // Create a dynamic delete route to remove a rating by it's ID
-  
+app.delete("/ratings/:id", async (req,res)=>{
+  const resp = await Rating.findOneAndDelete({_id:req.params.id})
+  res.json(resp)
+})
  
 
 async function startServer() {
