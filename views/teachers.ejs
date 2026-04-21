@@ -43,10 +43,21 @@
         <div class="teacher-card">
           <img src="<%= teachers[i].image %>" alt="<%= teachers[i].name %>" />
           <div class="teacher-card-content">
-            <h2><%= teachers[i].name %></h2>
-            <p><strong>Department:</strong> <%= teachers[i].department %></p>
-            <!-- Add a button that calls a deleteTeacher function with their id passed as input -->
-             <button onClick="deleteTeacher('<%=teachers[i]._id %>')">Delete Teacher</button>
+            <div class="edit-form" id="form-<%= teachers[i]._id %>">
+              <label>Name: </label>
+              <input type="text" class="teacher-name" value="<%= teachers[i].name %>" />
+              
+              <label>Department: </label>
+              <input type="text" class="teacher-department" value="<%= teachers[i].department %>" />
+              
+              <label>Image: </label>
+              <input type="text" class="teacher-image" value="<%= teachers[i].image %>" />
+              
+              <div class="button-group">
+                <button type="button" onClick="updateTeacher('<%= teachers[i]._id %>')">Update Teacher</button>
+                <button type="button" onClick="deleteTeacher('<%= teachers[i]._id %>')">Delete Teacher</button>
+              </div>
+            </div>
           </div>
         </div>
       <% } %>

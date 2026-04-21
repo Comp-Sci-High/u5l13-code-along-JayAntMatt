@@ -67,6 +67,16 @@ app.post("/add/teacher", async (req, res) => {
   res.json(newTeacher);
 });
 
+// Create a dynamic PATCH route to update a teacher by their ID
+app.patch("/teachers/:id", async (req, res) => {
+  const resp = await Teacher.findOneAndUpdate(
+    { _id: req.params.id },
+    { name: req.body.name, department: req.body.department, image: req.body.image },
+    { new: true }
+  );
+  res.json(resp);
+});
+
 // Create a dynamic delete route to remove a teacher by their ID
 
 app.delete("/teachers/:id", async (req,res) =>{
@@ -92,3 +102,13 @@ async function startServer() {
 }
 
 startServer();
+
+//
+app.patch("/ratings/:id", async (req, res) => {
+  const resp = await Teacher.findOneAndUpdate(
+    { _id: req.params.id },
+    { name: req.body.name, department: req.body.department, image: req.body.image },
+    { new: true }
+  );
+  res.json(resp);
+});

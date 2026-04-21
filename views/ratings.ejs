@@ -58,7 +58,24 @@
             <p><strong>Comment:</strong> <%= ratings[i].comment %></p>
             <p><em>By: <%= ratings[i].username %></em></p>
             <!-- Add a button that calls a deleteRating function with its id passed as input -->
-
+            <div class="edit-form" id="form-<%= ratings[i]._id %>">
+              <label>Username: </label>
+              <input type="text" class="ratings-username" value="<%= ratings[i].username %>" />
+              
+              <label>Teacher: </label>
+              <input type="text" class="ratings-teacher" value="<%= ratings[i].teacher %>" />
+              
+              <label>Comment: </label>
+              <input type="text" class="ratings-comment" value="<%= ratings[i].comment %>" />
+              
+              <label>Rating: </label>
+              <input type="number" class="ratings-rating" value="<%= ratings[i].rating %>" min="1" max="5" />
+              
+              <div class="button-group">
+                <button type="button" onClick="updateRating('<%= ratings[i]._id %>')">Update Rating</button>
+                <button type="button" onClick="deleteRating('<%= ratings[i]._id %>')">Delete Rating</button>
+              </div>
+            </div>
           </div>
         </div>
       <% } %>
