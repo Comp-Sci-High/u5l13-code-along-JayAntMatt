@@ -29,21 +29,22 @@ async function deleteRating(id){
 
 
 
-//
+// Update a rating
 async function updateRating(id){
     const form = document.querySelector(`#form-${id}`);
-    const name = form.querySelector(".rating-name").value;
-    const department = form.querySelector(".rating-department").value;
-    const image = form.querySelector(".rating-image").value;
+    const username = form.querySelector(".ratings-username").value;
+    const teacher = form.querySelector(".ratings-teacher").value;
+    const comment = form.querySelector(".ratings-comment").value;
+    const rating = form.querySelector(".ratings-rating").value;
 
-    const response = await fetch('/rating/' + id, {
+    const response = await fetch('/ratings/' + id, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ name, department, image })
+        body: JSON.stringify({ username, teacher, comment, rating })
     });
     const data = await response.json();
     console.log(data);
-    window.location.href = "/";
+    window.location.href = "/ratings";
 }

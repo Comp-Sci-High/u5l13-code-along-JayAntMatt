@@ -84,7 +84,17 @@ const resp = await Teacher.findOneAndDelete({_id:req.params.id})
 res.json(resp)
 } )
 
-// Create a dynamic delete route to remove a rating by it's ID
+// Create a dynamic PATCH route to update a rating by its ID
+app.patch("/ratings/:id", async (req, res) => {
+  const resp = await Rating.findOneAndUpdate(
+    { _id: req.params.id },
+    { username: req.body.username, teacher: req.body.teacher, comment: req.body.comment, rating: req.body.rating },
+    { new: true }
+  );
+  res.json(resp);
+});
+
+// Create a dynamic delete route to remove a rating by its ID
 app.delete("/ratings/:id", async (req,res)=>{
   const resp = await Rating.findOneAndDelete({_id:req.params.id})
   res.json(resp)
